@@ -1,4 +1,4 @@
-package com.example.samplecoroutinetask
+package com.example.samplecoroutinetask.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.samplecoroutinetask.Model.MainViewModel
+import com.example.samplecoroutinetask.R
 import com.example.samplecoroutinetask.adapter.listAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
