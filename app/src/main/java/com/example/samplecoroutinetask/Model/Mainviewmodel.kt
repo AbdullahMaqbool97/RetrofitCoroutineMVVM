@@ -8,7 +8,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 
-class MainViewModel: ViewModel() {
+class Mainviewmodel: ViewModel() {
     val retrofitService = retrofitService().getItemService()
     var job: Job? = null
     val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
@@ -22,7 +22,7 @@ class MainViewModel: ViewModel() {
 
     private fun fetchUsers() {
         job = CoroutineScope(IO + exceptionHandler).launch {
-            val response = retrofitService.getItems()
+            val response = retrofitService.getItems("abdullah")
             withContext(Main) {
                 if (response.isSuccessful) {
                     Items.value = response.body()?.items
