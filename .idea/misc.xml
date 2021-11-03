@@ -3,9 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android_Projects/SampleCoroutineTask/app/src/main/res/drawable/about_icon_copy_right.xml" value="0.14635416666666667" />
+        <entry key="..\:/Android_Projects/SampleCoroutineTask/app/src/main/res/layout/activity_aboutus.xml" value="0.25416666666666665" />
         <entry key="..\:/Android_Projects/SampleCoroutineTask/app/src/main/res/layout/activity_details.xml" value="0.2074074074074074" />
+        <entry key="..\:/Android_Projects/SampleCoroutineTask/app/src/main/res/layout/activity_login.xml" value="0.20462962962962963" />
         <entry key="..\:/Android_Projects/SampleCoroutineTask/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android_Projects/SampleCoroutineTask/app/src/main/res/layout/custom_drawer_menu.xml" value="0.20462962962962963" />
         <entry key="..\:/Android_Projects/SampleCoroutineTask/app/src/main/res/layout/itemcustom.xml" value="0.2074074074074074" />
+        <entry key="..\:/Android_Projects/SampleCoroutineTask/app/src/main/res/layout/layout_main.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>
