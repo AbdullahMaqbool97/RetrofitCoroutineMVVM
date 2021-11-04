@@ -62,17 +62,17 @@ class MainActivity : AppCompatActivity() {
         drawer_layout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
 
-        drawerMoreApp.setOnClickListener {
+        drawerAboutUs.setOnClickListener {
             drawer_layout.closeDrawer(GravityCompat.START)
             startActivity(Intent(applicationContext, AboutusActivity::class.java))
         }
 
-        more_app_icon.setOnClickListener {
+        about_us_icon.setOnClickListener {
             drawer_layout.closeDrawer(GravityCompat.START)
             startActivity(Intent(applicationContext, AboutusActivity::class.java))
         }
 
-        more_app_txt.setOnClickListener {
+        about_us_txt.setOnClickListener {
             drawer_layout.closeDrawer(GravityCompat.START)
             startActivity(Intent(applicationContext, AboutusActivity::class.java))
         }

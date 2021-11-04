@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp">
 
             <ImageView
@@ -38,24 +38,52 @@
                 android:textStyle="bold" />
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/login_layout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/app_layout"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/loginbox">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Login or Create account"
+                android:textColor="#4a846f"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/login_layout"
+            android:layout_marginTop="20dp"
+            android:background="#f2f2f2" />
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/app_layout">
+            android:layout_below="@+id/login_layout"
+            android:layout_marginTop="30dp">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <RelativeLayout
-                    android:id="@+id/drawerProLayout"
+                    android:id="@+id/drawerSearchLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="10dp">
 
                     <ImageView
-                        android:id="@+id/premium_icon"
+                        android:id="@+id/search_icon"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_alignParentStart="true"
@@ -65,29 +93,29 @@
                         android:src="@drawable/ic_launcher_background" />
 
                     <TextView
-                        android:id="@+id/premium_txt"
+                        android:id="@+id/search_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="11dp"
-                        android:layout_toEndOf="@+id/premium_icon"
+                        android:layout_toEndOf="@+id/search_icon"
                         android:singleLine="true"
-                        android:text="Home"
+                        android:text="Search"
                         android:textColor="@color/black"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/drawerMoreApp"
+                    android:id="@+id/drawerNewProject"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/drawerProLayout"
+                    android:layout_below="@+id/drawerSearchLayout"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="35dp">
+                    android:layout_marginTop="25dp">
 
                     <ImageView
-                        android:id="@+id/more_app_icon"
+                        android:id="@+id/new_project_icon"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_alignParentStart="true"
@@ -97,16 +125,250 @@
                         android:src="@drawable/ic_launcher_background" />
 
                     <TextView
-                        android:id="@+id/more_app_txt"
+                        android:id="@+id/new_project_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="13dp"
-                        android:layout_toEndOf="@+id/more_app_icon"
+                        android:layout_toEndOf="@+id/new_project_icon"
                         android:singleLine="true"
-                        android:text="About us"
+                        android:text="New Project"
                         android:textColor="@color/black"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/drawerFavourite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/drawerNewProject"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="25dp">
+
+                    <ImageView
+                        android:id="@+id/favourite_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="12dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_launcher_background" />
+
+                    <TextView
+                        android:id="@+id/favourite_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="12dp"
+                        android:layout_toEndOf="@+id/favourite_icon"
+                        android:singleLine="true"
+                        android:text="Favourite"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/drawerSavedSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/drawerFavourite"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="25dp">
+
+                    <ImageView
+                        android:id="@+id/savedSearch_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="13dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_launcher_background" />
+
+                    <TextView
+                        android:id="@+id/savedSearch_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="13dp"
+                        android:layout_toEndOf="@+id/savedSearch_icon"
+                        android:singleLine="true"
+                        android:text="Saved Search"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/drawerFinder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/drawerSavedSearch"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="25dp">
+
+                    <ImageView
+                        android:id="@+id/finder_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="13dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_launcher_background" />
+
+                    <TextView
+                        android:id="@+id/finder_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="13dp"
+                        android:layout_toEndOf="@+id/finder_icon"
+                        android:singleLine="true"
+                        android:text="Finder"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/drawerNews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/drawerFinder"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="25dp">
+
+                    <ImageView
+                        android:id="@+id/news_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="13dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_launcher_background" />
+
+                    <TextView
+                        android:id="@+id/news_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="13dp"
+                        android:layout_toEndOf="@+id/news_icon"
+                        android:singleLine="true"
+                        android:text="News"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/drawerBlog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/drawerNews"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="25dp">
+
+                    <ImageView
+                        android:id="@+id/blog_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="13dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_launcher_background" />
+
+                    <TextView
+                        android:id="@+id/blog_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="13dp"
+                        android:layout_toEndOf="@+id/blog_icon"
+                        android:singleLine="true"
+                        android:text="Blog"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/controls_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/drawerBlog"
+                    android:layout_marginTop="20dp"
+                    android:maxLines="1"
+                    android:text="----App Controls----------------------------------------------------------------"
+                    android:textAllCaps="true" />
+
+                <RelativeLayout
+                    android:id="@+id/drawerLanguage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/controls_txt"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="25dp">
+
+                    <ImageView
+                        android:id="@+id/language_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="13dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_launcher_background" />
+
+                    <TextView
+                        android:id="@+id/language_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="13dp"
+                        android:layout_toEndOf="@+id/language_icon"
+                        android:singleLine="true"
+                        android:text="English"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/drawerAboutUs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/drawerLanguage"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="25dp">
+
+                    <ImageView
+                        android:id="@+id/about_us_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="13dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_launcher_background" />
+
+                    <TextView
+                        android:id="@+id/about_us_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="13dp"
+                        android:layout_toEndOf="@+id/about_us_icon"
+                        android:singleLine="true"
+                        android:text="About Us"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
@@ -114,9 +376,9 @@
                     android:id="@+id/drawerContactUs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/drawerMoreApp"
+                    android:layout_below="@+id/drawerAboutUs"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="35dp">
+                    android:layout_marginTop="25dp">
 
                     <ImageView
                         android:id="@+id/contact_us_icon"
@@ -124,7 +386,7 @@
                         android:layout_height="30dp"
                         android:layout_alignParentStart="true"
                         android:layout_centerInParent="true"
-                        android:layout_marginStart="12dp"
+                        android:layout_marginStart="13dp"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_launcher_background" />
 
@@ -133,12 +395,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginStart="12dp"
+                        android:layout_marginStart="13dp"
                         android:layout_toEndOf="@+id/contact_us_icon"
                         android:singleLine="true"
-                        android:text="Contact us"
+                        android:text="Contact Us"
                         android:textColor="@color/black"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
@@ -148,7 +410,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/drawerContactUs"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="35dp">
+                    android:layout_marginTop="25dp">
 
                     <ImageView
                         android:id="@+id/privacy_icon"
@@ -165,76 +427,37 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginStart="15dp"
+                        android:layout_marginStart="13dp"
                         android:layout_toEndOf="@+id/privacy_icon"
                         android:singleLine="true"
-                        android:text="Privacy policy"
+                        android:text="Terms &amp; Privacy Policy"
                         android:textColor="@color/black"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
+
                 <RelativeLayout
-                    android:id="@+id/drawerShareUs"
+                    android:id="@+id/drawerLogout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_below="@+id/drawerPrivacyPolicy"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="35dp">
-
-                    <ImageView
-                        android:id="@+id/share_us_icon"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginStart="13dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/ic_launcher_background" />
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/loginbox">
 
                     <TextView
-                        android:id="@+id/share_us_txt"
+                        android:id="@+id/logout_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="13dp"
-                        android:layout_toEndOf="@+id/share_us_icon"
-                        android:singleLine="true"
-                        android:text="Share app"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/drawerRateUs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/drawerShareUs"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="35dp">
-
-                    <ImageView
-                        android:id="@+id/rate_us_icon"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentStart="true"
                         android:layout_centerInParent="true"
-                        android:layout_marginStart="13dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/ic_launcher_background" />
-
-                    <TextView
-                        android:id="@+id/rate_us_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="13dp"
-                        android:layout_toEndOf="@+id/rate_us_icon"
+                        android:layout_centerHorizontal="true"
                         android:singleLine="true"
-                        android:text="Rate us"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
+                        android:text="Logout"
+                        android:textColor="#4a846f"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
             </RelativeLayout>

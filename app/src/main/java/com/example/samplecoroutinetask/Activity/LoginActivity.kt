@@ -40,7 +40,6 @@ class LoginActivity : AppCompatActivity() {
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
-//            .requestIdToken("79300863100-1gja9t6aiuel6a6fbp3qbhvuh9b6ni8t.apps.googleusercontent.com")
             .requestEmail()
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
@@ -102,7 +101,6 @@ class LoginActivity : AppCompatActivity() {
                     Log.w("facebookauth", "signInWithCredential:failure", task.exception)
                     Toast.makeText(baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT).show()
-//                    updateUI(null)
                 }
             }
     }
@@ -154,5 +152,4 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
     }
-
 }
