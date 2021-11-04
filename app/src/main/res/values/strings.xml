@@ -3,4 +3,6 @@
     <string name="open">open</string>
     <string name="close">close</string>
     <string name="copy_right">Copyrights © %1$d</string>
+    <string name="facebook_app_id">313811120191021</string>
+    <!--    <string name="default_web_client_id">79300863100-1gja9t6aiuel6a6fbp3qbhvuh9b6ni8t.apps.googleusercontent.com</string>-->
 </resources>

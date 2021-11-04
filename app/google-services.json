@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "79300863100",
+    "project_id": "sample-coroutine",
+    "storage_bucket": "sample-coroutine.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79300863100:android:e6cad676e8dfbfc26515f9",
+        "android_client_info": {
+          "package_name": "com.example.samplecoroutinetask"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "79300863100-1gja9t6aiuel6a6fbp3qbhvuh9b6ni8t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsYuDMBTA40oQDuVmuiTsSBLqC2mW429M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "79300863100-1gja9t6aiuel6a6fbp3qbhvuh9b6ni8t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
