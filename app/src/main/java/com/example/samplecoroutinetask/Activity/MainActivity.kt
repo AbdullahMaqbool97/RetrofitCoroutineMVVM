@@ -13,6 +13,11 @@ import com.example.samplecoroutinetask.R
 import com.example.samplecoroutinetask.adapter.listAdapter
 import androidx.core.view.GravityCompat
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.navigation.ActivityNavigator
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import com.example.samplecoroutinetask.Interface.onClick_details
+import com.example.samplecoroutinetask.Model.Items
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -21,9 +26,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_drawer_menu.*
 import kotlinx.android.synthetic.main.layout_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), onClick_details{
     lateinit var viewModel: Mainviewmodel
     private val listAdapter = listAdapter(arrayListOf())
+    private var mList: List<Items> = ArrayList()
+
+    lateinit var navController: NavController
 
     lateinit var mGoogleSignInClient: GoogleSignInClient
 
@@ -34,6 +42,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+//        navController = Navigation.findNavController(layout_main)
 
         viewModel = ViewModelProviders.of(this).get(Mainviewmodel::class.java)
         viewModel.refresh()
@@ -65,16 +75,22 @@ class MainActivity : AppCompatActivity() {
         drawerAboutUs.setOnClickListener {
             drawer_layout.closeDrawer(GravityCompat.START)
             startActivity(Intent(applicationContext, AboutusActivity::class.java))
+
+//            Navigation.findNavController(it).navigate(R.id.about_activity)
         }
 
         about_us_icon.setOnClickListener {
             drawer_layout.closeDrawer(GravityCompat.START)
             startActivity(Intent(applicationContext, AboutusActivity::class.java))
+
+//            Navigation.findNavController(it).navigate(R.id.about_activity)
         }
 
         about_us_txt.setOnClickListener {
             drawer_layout.closeDrawer(GravityCompat.START)
             startActivity(Intent(applicationContext, AboutusActivity::class.java))
+
+//            Navigation.findNavController().navigate(R.id.about_activity)
         }
 
         logout_txt.setOnClickListener {
@@ -91,7 +107,8 @@ class MainActivity : AppCompatActivity() {
         viewModel.Items.observe(this, Observer { countries ->
             countries?.let {
                 rv_main.visibility = View.VISIBLE
-                listAdapter.updateItems(it)
+                mList = it
+                listAdapter.updateItems(it, this)
             }
         })
     }
@@ -102,5 +119,21 @@ class MainActivity : AppCompatActivity() {
         } else {
             super.onBackPressed()
         }
+    }
+
+    override fun onPosition(position: Int) {
+        val itemAdapter: Items = mList[position]
+
+        val login: String = itemAdapter.owner.getValue("login").toString()
+        val id: String = itemAdapter.owner.getValue("id").toString()
+        val type: String = itemAdapter.owner.getValue("type").toString()
+        val url: String = itemAdapter.owner.getValue("url").toString()
+
+        val intent = Intent(applicationContext, DetailsActivity::class.java)
+        intent.putExtra("login", login)
+        intent.putExtra("id", id)
+        intent.putExtra("type", type)
+        intent.putExtra("url", url)
+        startActivity(intent)
     }
 }

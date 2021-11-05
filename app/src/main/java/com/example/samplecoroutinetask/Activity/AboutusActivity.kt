@@ -16,7 +16,7 @@ class AboutusActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val adsElement = Element()
-        adsElement.setTitle("Advertise with us")
+        adsElement.title = "Advertise with us"
 
         val aboutPage = AboutPage(this)
             .isRTL(false)
@@ -25,13 +25,13 @@ class AboutusActivity : AppCompatActivity() {
             .addItem(adsElement)
             .addGroup("Connect with us")
             .addEmail("elmehdi.sakout@gmail.com")
-            .addWebsite("https://mehdisakout.com/")
+            .addWebsite("https://google.com/")
             .addFacebook("the.medy")
             .addTwitter("medyo80")
             .addYoutube("UCdPQtdWIsg7_pi4mrRu46vA")
             .addPlayStore("com.ideashower.readitlater.pro")
             .addInstagram("medyo80")
-            .addGitHub("medyo")
+            .addGitHub("AbdullahMaqbool97")
             .addItem(getCopyRightsElement())
             .create()
         setContentView(aboutPage)
@@ -41,17 +41,19 @@ class AboutusActivity : AppCompatActivity() {
         val copyRightsElement = Element()
         val copyrights =
             String.format(getString(R.string.copy_right), Calendar.getInstance().get(Calendar.YEAR))
-        copyRightsElement.setTitle(copyrights)
-        copyRightsElement.setIconDrawable(R.drawable.about_icon_copy_right)
+        copyRightsElement.title = copyrights
+        copyRightsElement.iconDrawable = R.drawable.about_icon_copy_right
         copyRightsElement.autoApplyIconTint = true
-        copyRightsElement.setIconTint(mehdi.sakout.aboutpage.R.color.about_item_icon_color)
+        copyRightsElement.iconTint = mehdi.sakout.aboutpage.R.color.about_item_icon_color
         copyRightsElement.iconNightTint = android.R.color.white
         copyRightsElement.gravity = Gravity.CENTER
-        copyRightsElement.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                Toast.makeText(this@AboutusActivity, copyrights, Toast.LENGTH_SHORT).show()
-            }
-        })
+        copyRightsElement.onClickListener = View.OnClickListener {
+            Toast.makeText(
+                this@AboutusActivity,
+                copyrights,
+                Toast.LENGTH_SHORT
+            ).show()
+        }
         return copyRightsElement
     }
 }

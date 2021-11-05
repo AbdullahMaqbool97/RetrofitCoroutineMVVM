@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/login_activity">
+
+    <activity
+        android:id="@+id/splash_activity"
+        android:name="com.example.samplecoroutinetask.Activity.SplashActivity"
+        android:label="MainActivity"
+        tools:layout="@layout/activity_splash">
+
+        <action
+            android:id="@+id/time_click"
+            app:destination="@id/login_activity" />
+    </activity>
+
+    <activity
+        android:id="@+id/login_activity"
+        android:name="com.example.samplecoroutinetask.Activity.LoginActivity"
+        android:label="MainActivity"
+        tools:layout="@layout/activity_login">
+
+        <action
+            android:id="@+id/login_click"
+            app:destination="@id/main_activity" />
+    </activity>
+
+    <activity
+        android:id="@+id/main_activity"
+        android:name="com.example.samplecoroutinetask.Activity.MainActivity"
+        android:label="MainActivity"
+        tools:layout="@layout/layout_main">
+
+        <action
+            android:id="@+id/list_click"
+            app:destination="@id/detail_activity" />
+    </activity>
+
+    <activity
+        android:id="@+id/drawer_click"
+        android:name="com.example.samplecoroutinetask.Activity.MainActivity"
+        android:label="layout_drawer"
+        tools:layout="@layout/custom_drawer_menu">
+
+        <action
+            android:id="@+id/about_click"
+            app:destination="@id/about_activity" />
+    </activity>
+
+    <activity
+        android:id="@+id/detail_activity"
+        android:name="com.example.samplecoroutinetask.Activity.DetailsActivity"
+        android:label="activity_detail"
+        tools:layout="@layout/activity_details" />
+
+    <activity
+        android:id="@+id/about_activity"
+        android:name="com.example.samplecoroutinetask.Activity.DetailsActivity"
+        android:label="activity_detail"
+        tools:layout="@layout/activity_aboutus" />
+
+   <!-- <navigation android:id="@+id/about_activity1">
+        <activity android:id="@+id/about"
+            android:name="com.example.samplecoroutinetask.Activity.DetailsActivity"
+            android:label="activity_detail"
+            tools:layout="@layout/activity_aboutus"/>
+    </navigation>-->
+</navigation>

@@ -3,7 +3,10 @@ package com.example.samplecoroutinetask.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
+import android.util.Patterns
+import android.view.View
 import android.widget.Toast
 import com.example.samplecoroutinetask.R
 import com.facebook.AccessToken
@@ -24,6 +27,16 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
+import com.google.firebase.auth.AuthResult
+
+import androidx.annotation.NonNull
+import androidx.navigation.ActivityNavigator
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+
+import com.google.firebase.auth.AuthCredential
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -32,11 +45,14 @@ class LoginActivity : AppCompatActivity() {
     val Req_Code: Int = 123
     private lateinit var firebaseAuth: FirebaseAuth
 
+    lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         FirebaseApp.initializeApp(this)
+//        navController = Navigation.findNavController(this, R.id.nav_graph)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -48,13 +64,46 @@ class LoginActivity : AppCompatActivity() {
         callbackManager = CallbackManager.Factory.create()
 
         signinbtn.setOnClickListener {
-            if (email.hasFocus()) {
-                email.clearFocus()
+            if (!TextUtils.isEmpty(email.text) && !TextUtils.isEmpty(password.text)) {
+                val emailText = email.text.toString().trim()
+                if (emailText.isValidEmail()) {
+                    if (password.text.length > 6) {
+                        if (email.hasFocus()) {
+                            email.clearFocus()
+                        }
+                        if (password.hasFocus()) {
+                            password.clearFocus()
+                        }
+                        email.setText("")
+                        password.setText("")
+
+                        startActivity(Intent(applicationContext, MainActivity::class.java))
+                    } else {
+                        Toast.makeText(
+                            applicationContext,
+                            "Password length too short min 6",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } else {
+                    Toast.makeText(
+                        applicationContext,
+                        "Invalid email format",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            } else {
+                Toast.makeText(
+                    applicationContext,
+                    "Email or password should not be null",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
-            if (password.hasFocus()) {
-                password.clearFocus()
-            }
-            startActivity(Intent(applicationContext, MainActivity::class.java))
+//            navController.navigate(R.id.main_activity)
+
+            /*val destination = ActivityNavigator(this).createDestination()
+                .setIntent(Intent(this, MainActivity::class.java))
+            ActivityNavigator(this).navigate(destination, null, null, null)*/
         }
 
         googlesignin.setOnClickListener {
@@ -99,8 +148,10 @@ class LoginActivity : AppCompatActivity() {
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("facebookauth", "signInWithCredential:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
     }
@@ -124,22 +175,26 @@ class LoginActivity : AppCompatActivity() {
         try {
             val account: GoogleSignInAccount? = completedTask.getResult(ApiException::class.java)
             if (account != null) {
-                UpdateUI(account)
+                updateUI(account)
             }
         } catch (e: ApiException) {
-            Log.d("ApiException", "handleResult: " + e.toString())
+            Log.d("ApiException", "handleResult: $e")
             Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun UpdateUI(account: GoogleSignInAccount) {
+    private fun updateUI(account: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                SavedPreference.setEmail(this, account.email.toString())
-                SavedPreference.setUsername(this, account.displayName.toString())
+                SavedPreference.setEmail(this, account.email!!.toString())
+                SavedPreference.setUsername(this, account.displayName!!.toString())
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+
+//                val destination = ActivityNavigator(this).createDestination()
+//                    .setIntent(Intent(this, MainActivity::class.java))
+//                ActivityNavigator(this).navigate(destination, null, null, null)
                 finish()
             }
         }
@@ -149,7 +204,13 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
             startActivity(Intent(this, MainActivity::class.java))
+//            val destination = ActivityNavigator(this).createDestination()
+//                .setIntent(Intent(this, MainActivity::class.java))
+//            ActivityNavigator(this).navigate(destination, null, null, null)
             finish()
         }
     }
+
+    fun CharSequence?.isValidEmail() =
+        !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
 }

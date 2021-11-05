@@ -4,5 +4,6 @@
     <string name="close">close</string>
     <string name="copy_right">Copyrights © %1$d</string>
     <string name="facebook_app_id">313811120191021</string>
+    <string name="need_an_account_sign_up">Need an account? <font color='#4a846f'><u>Sign Up</u></font></string>
     <!--    <string name="default_web_client_id">79300863100-1gja9t6aiuel6a6fbp3qbhvuh9b6ni8t.apps.googleusercontent.com</string>-->
 </resources>

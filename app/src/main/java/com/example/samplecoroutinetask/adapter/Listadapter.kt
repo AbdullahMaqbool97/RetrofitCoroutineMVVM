@@ -5,8 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.samplecoroutinetask.Activity.DetailsActivity
+import com.example.samplecoroutinetask.Interface.onClick_details
 import com.example.samplecoroutinetask.Model.Items
 import com.example.samplecoroutinetask.R
 import com.example.samplecoroutinetask.adapter.listAdapter.ViewHolder
@@ -14,9 +16,12 @@ import kotlinx.android.synthetic.main.itemcustom.view.*
 
 class listAdapter(var items: ArrayList<Items>) : RecyclerView.Adapter<ViewHolder>() {
 
-    fun updateItems(newItems: List<Items>) {
+    private var onitemclick: onClick_details? = null
+
+    fun updateItems(newItems: List<Items>, onitemClick: onClick_details) {
         items.clear()
         items.addAll(newItems)
+        onitemclick = onitemClick
         notifyDataSetChanged()
     }
 
@@ -30,8 +35,9 @@ class listAdapter(var items: ArrayList<Items>) : RecyclerView.Adapter<ViewHolder
         holder.bind(items[position])
 
         holder.card.setOnClickListener(View.OnClickListener {
-//            Log.d("Valueiii", "onBindViewHolder: " + items[position].owner.getValue("id").toString())
-            val login: String = items[position].owner.getValue("login").toString()
+            onitemclick?.onPosition(position)
+            Log.d("Valueiii", "onBindViewHolder: " + items[position].owner.getValue("id").toString())
+           /* val login: String = items[position].owner.getValue("login").toString()
             val id: String = items[position].owner.getValue("id").toString()
             val type: String = items[position].owner.getValue("type").toString()
             val url: String = items[position].owner.getValue("url").toString()
@@ -41,7 +47,9 @@ class listAdapter(var items: ArrayList<Items>) : RecyclerView.Adapter<ViewHolder
             intent.putExtra("id", id)
             intent.putExtra("type", type)
             intent.putExtra("url", url)
-            it.context.startActivity(intent)
+            it.context.startActivity(intent)*/
+
+//            Navigation.findNavController(it).navigate(R.id.about_activity1)
         })
     }
 
