@@ -1,25 +1,28 @@
 package com.example.samplecoroutinetask.Fragments
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.example.samplecoroutinetask.Activity.AboutusActivity
 import com.example.samplecoroutinetask.Activity.LoginActivity
+import com.example.samplecoroutinetask.Activity.MapsActivity
 import com.example.samplecoroutinetask.R
 import com.facebook.AccessToken
 import com.facebook.GraphRequest
 import com.facebook.HttpMethod
+import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_drawer_menu.*
+import kotlinx.android.synthetic.main.fragment_main_layout.*
 import kotlinx.android.synthetic.main.layout_main.*
-import com.facebook.login.LoginManager
+import kotlinx.android.synthetic.main.layout_main.toolbar
 
 class MainActivityFragment : AppCompatActivity() {
     lateinit var mGoogleSignInClient: GoogleSignInClient
@@ -77,13 +80,22 @@ class MainActivityFragment : AppCompatActivity() {
 //            finish()
 
             if (AccessToken.getCurrentAccessToken() != null) {
-                GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, GraphRequest.Callback {
-                    AccessToken.setCurrentAccessToken(null)
-                    LoginManager.getInstance().logOut()
+                GraphRequest(
+                    AccessToken.getCurrentAccessToken(),
+                    "/me/permissions/",
+                    null,
+                    HttpMethod.DELETE,
+                    GraphRequest.Callback {
+                        AccessToken.setCurrentAccessToken(null)
+                        LoginManager.getInstance().logOut()
 
-                    finish()
-                }).executeAsync()
+                        finish()
+                    }).executeAsync()
             }
+        }
+
+        search.setOnClickListener {
+            startActivity(Intent(this@MainActivityFragment, MapsActivity::class.java))
         }
     }
 

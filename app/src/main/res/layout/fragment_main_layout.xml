@@ -49,4 +49,48 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph" />
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/bottombar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent">
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:background="@color/white"
+            app:fabAnimationMode="slide"
+            app:fabCradleMargin="9dp"
+            app:fabCradleRoundedCornerRadius="9dp"
+            app:fabCradleVerticalOffset="8dp"
+            app:hideOnScroll="true" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="22dp"
+            android:background="@android:color/transparent"
+            android:backgroundTint="#4a846f"
+            android:src="@drawable/ic_search"
+            app:elevation="0dp"
+            app:fabSize="normal"
+            app:layout_anchor="@id/bottomAppBar"
+            app:rippleColor="@null"
+            app:tint="@null" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:text="Search"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </RelativeLayout>
