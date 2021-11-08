@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
-import android.view.View
 import android.widget.Toast
 import com.example.samplecoroutinetask.R
 import com.facebook.AccessToken
@@ -27,15 +26,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
-import com.google.firebase.auth.AuthResult
-
-import androidx.annotation.NonNull
-import androidx.navigation.ActivityNavigator
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-
-import com.google.firebase.auth.AuthCredential
+import com.example.samplecoroutinetask.Fragments.MainActivityFragment
 
 
 class LoginActivity : AppCompatActivity() {
@@ -45,14 +36,11 @@ class LoginActivity : AppCompatActivity() {
     val Req_Code: Int = 123
     private lateinit var firebaseAuth: FirebaseAuth
 
-    lateinit var navController: NavController
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         FirebaseApp.initializeApp(this)
-//        navController = Navigation.findNavController(this, R.id.nav_graph)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -77,7 +65,7 @@ class LoginActivity : AppCompatActivity() {
                         email.setText("")
                         password.setText("")
 
-                        startActivity(Intent(applicationContext, MainActivity::class.java))
+                        startActivity(Intent(applicationContext, MainActivityFragment::class.java))
                     } else {
                         Toast.makeText(
                             applicationContext,
@@ -99,7 +87,6 @@ class LoginActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-//            navController.navigate(R.id.main_activity)
 
             /*val destination = ActivityNavigator(this).createDestination()
                 .setIntent(Intent(this, MainActivity::class.java))
@@ -144,7 +131,8 @@ class LoginActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("facebookauth", "signInWithCredential:success")
                     val user = firebaseAuth.currentUser
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, MainActivityFragment::class.java))
+                    finish()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("facebookauth", "signInWithCredential:failure", task.exception)
@@ -189,7 +177,7 @@ class LoginActivity : AppCompatActivity() {
             if (task.isSuccessful) {
                 SavedPreference.setEmail(this, account.email!!.toString())
                 SavedPreference.setUsername(this, account.displayName!!.toString())
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, MainActivityFragment::class.java)
                 startActivity(intent)
 
 //                val destination = ActivityNavigator(this).createDestination()
@@ -202,11 +190,16 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        val accessToken = AccessToken.getCurrentAccessToken()
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, MainActivityFragment::class.java))
 //            val destination = ActivityNavigator(this).createDestination()
 //                .setIntent(Intent(this, MainActivity::class.java))
 //            ActivityNavigator(this).navigate(destination, null, null, null)
+            finish()
+        }
+        if(accessToken != null){
+            startActivity(Intent(this, MainActivityFragment::class.java))
             finish()
         }
     }

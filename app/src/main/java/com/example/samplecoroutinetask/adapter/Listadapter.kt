@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.example.samplecoroutinetask.Activity.DetailsActivity
 import com.example.samplecoroutinetask.Interface.onClick_details
 import com.example.samplecoroutinetask.Model.Items
 import com.example.samplecoroutinetask.R

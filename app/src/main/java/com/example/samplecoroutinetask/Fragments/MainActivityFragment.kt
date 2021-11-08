@@ -1,23 +1,17 @@
-package com.example.samplecoroutinetask.Activity
+package com.example.samplecoroutinetask.Fragments
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.samplecoroutinetask.Model.Mainviewmodel
-import com.example.samplecoroutinetask.R
-import com.example.samplecoroutinetask.adapter.listAdapter
-import androidx.core.view.GravityCompat
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.navigation.ActivityNavigator
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import com.example.samplecoroutinetask.Interface.onClick_details
-import com.example.samplecoroutinetask.Model.Items
+import androidx.core.view.GravityCompat
+import com.example.samplecoroutinetask.Activity.AboutusActivity
+import com.example.samplecoroutinetask.Activity.LoginActivity
+import com.example.samplecoroutinetask.R
+import com.facebook.AccessToken
+import com.facebook.GraphRequest
+import com.facebook.HttpMethod
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -25,14 +19,9 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_drawer_menu.*
 import kotlinx.android.synthetic.main.layout_main.*
+import com.facebook.login.LoginManager
 
-class MainActivity : AppCompatActivity(), onClick_details {
-    lateinit var viewModel: Mainviewmodel
-    private val listAdapter = listAdapter(arrayListOf())
-    private var mList: List<Items> = ArrayList()
-
-    lateinit var navController: NavController
-
+class MainActivityFragment : AppCompatActivity() {
     lateinit var mGoogleSignInClient: GoogleSignInClient
 
     private val auth by lazy {
@@ -41,24 +30,13 @@ class MainActivity : AppCompatActivity(), onClick_details {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-//        navController = Navigation.findNavController(layout_main)
-
-        viewModel = ViewModelProviders.of(this).get(Mainviewmodel::class.java)
-        viewModel.refresh()
-        rv_main.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = listAdapter
-        }
-        observeViewModel()
+        setContentView(R.layout.activity_main_fragment)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
-
 
         val actionBarDrawerToggle =
             ActionBarDrawerToggle(this, drawer_layout, R.string.open, R.string.close)
@@ -75,22 +53,16 @@ class MainActivity : AppCompatActivity(), onClick_details {
         drawerAboutUs.setOnClickListener {
             drawer_layout.closeDrawer(GravityCompat.START)
             startActivity(Intent(applicationContext, AboutusActivity::class.java))
-
-//            Navigation.findNavController(it).navigate(R.id.about_activity)
         }
 
         about_us_icon.setOnClickListener {
             drawer_layout.closeDrawer(GravityCompat.START)
             startActivity(Intent(applicationContext, AboutusActivity::class.java))
-
-//            Navigation.findNavController(it).navigate(R.id.about_activity)
         }
 
         about_us_txt.setOnClickListener {
             drawer_layout.closeDrawer(GravityCompat.START)
             startActivity(Intent(applicationContext, AboutusActivity::class.java))
-
-//            Navigation.findNavController().navigate(R.id.about_activity)
         }
 
         logout_txt.setOnClickListener {
@@ -100,17 +72,19 @@ class MainActivity : AppCompatActivity(), onClick_details {
                 startActivity(intent)
                 finish()
             }
-        }
-    }
+            //Facebook SignOut
+//            LoginManager.getInstance().logOut()
+//            finish()
 
-    private fun observeViewModel() {
-        viewModel.Items.observe(this, Observer { countries ->
-            countries?.let {
-                rv_main.visibility = View.VISIBLE
-                mList = it
-                listAdapter.updateItems(it, this)
+            if (AccessToken.getCurrentAccessToken() != null) {
+                GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, GraphRequest.Callback {
+                    AccessToken.setCurrentAccessToken(null)
+                    LoginManager.getInstance().logOut()
+
+                    finish()
+                }).executeAsync()
             }
-        })
+        }
     }
 
     override fun onBackPressed() {
@@ -119,21 +93,5 @@ class MainActivity : AppCompatActivity(), onClick_details {
         } else {
             super.onBackPressed()
         }
-    }
-
-    override fun onPosition(position: Int) {
-        val itemAdapter: Items = mList[position]
-
-        val login: String = itemAdapter.owner.getValue("login").toString()
-        val id: String = itemAdapter.owner.getValue("id").toString()
-        val type: String = itemAdapter.owner.getValue("type").toString()
-        val url: String = itemAdapter.owner.getValue("url").toString()
-
-        val intent = Intent(applicationContext, DetailsActivity::class.java)
-        intent.putExtra("login", login)
-        intent.putExtra("id", id)
-        intent.putExtra("type", type)
-        intent.putExtra("url", url)
-        startActivity(intent)
     }
 }

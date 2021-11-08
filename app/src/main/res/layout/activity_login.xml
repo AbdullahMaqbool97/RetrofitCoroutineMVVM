@@ -103,14 +103,15 @@
         android:textAllCaps="false"
         android:textSize="15sp" />
 
-    <!--<com.facebook.login.widget.LoginButton
-        android:id="@+id/fbsignin"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_below="@id/ortxt"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="20dp" />-->
+
+<!--    <com.facebook.login.widget.LoginButton-->
+<!--        android:id="@+id/fbsignin"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_below="@id/ortxt"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:layout_marginEnd="20dp" />-->
 
     <Button
         android:id="@+id/googlesignin"

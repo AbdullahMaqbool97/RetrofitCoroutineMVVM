@@ -3,7 +3,12 @@
     <string name="open">open</string>
     <string name="close">close</string>
     <string name="copy_right">Copyrights © %1$d</string>
-    <string name="facebook_app_id">313811120191021</string>
+<!--    <string name="facebook_app_id">313811120191021</string>-->
     <string name="need_an_account_sign_up">Need an account? <font color='#4a846f'><u>Sign Up</u></font></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="facebook_app_id">1056400838530625</string>
+    <string name="fb_login_protocol_scheme">fb1056400838530625</string>
     <!--    <string name="default_web_client_id">79300863100-1gja9t6aiuel6a6fbp3qbhvuh9b6ni8t.apps.googleusercontent.com</string>-->
 </resources>
