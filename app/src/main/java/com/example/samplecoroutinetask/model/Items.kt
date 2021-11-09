@@ -1,7 +1,6 @@
-package com.example.samplecoroutinetask.Model
+package com.example.samplecoroutinetask.model
 
 import com.google.gson.annotations.SerializedName
-import kotlin.collections.HashMap
 
 data class Items(
     @SerializedName("id") val id: Int,

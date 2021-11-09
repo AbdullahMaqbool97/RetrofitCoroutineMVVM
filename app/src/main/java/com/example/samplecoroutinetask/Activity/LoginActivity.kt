@@ -1,13 +1,14 @@
 package com.example.samplecoroutinetask.Activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.samplecoroutinetask.R
+import com.example.samplecoroutinetask.fragments.MainActivityFragment
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -26,8 +27,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
-import com.example.samplecoroutinetask.Fragments.MainActivityFragment
-
 
 class LoginActivity : AppCompatActivity() {
 
@@ -129,13 +128,13 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    Log.d("facebookauth", "signInWithCredential:success")
+                    Log.d("facebookAuth", "signInWithCredential:success")
                     val user = firebaseAuth.currentUser
                     startActivity(Intent(this, MainActivityFragment::class.java))
                     finish()
                 } else {
                     // If sign in fails, display a message to the user.
-                    Log.w("facebookauth", "signInWithCredential:failure", task.exception)
+                    Log.w("facebookAuth", "signInWithCredential:failure", task.exception)
                     Toast.makeText(
                         baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT

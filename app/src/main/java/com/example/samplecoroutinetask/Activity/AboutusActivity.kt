@@ -1,14 +1,13 @@
 package com.example.samplecoroutinetask.Activity
 
 import android.os.Bundle
+import android.view.Gravity
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.samplecoroutinetask.R
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
-import android.widget.Toast
-
-import android.view.Gravity
-import android.view.View
 import java.lang.String
 import java.util.*
 

@@ -1,31 +1,25 @@
-package com.example.samplecoroutinetask.Fragments
+package com.example.samplecoroutinetask.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.annotation.NonNull
-import androidx.annotation.Nullable
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.samplecoroutinetask.Interface.onClick_details
-import com.example.samplecoroutinetask.Model.Items
-import com.example.samplecoroutinetask.Model.Mainviewmodel
 import com.example.samplecoroutinetask.R
 import com.example.samplecoroutinetask.adapter.listAdapter
+import com.example.samplecoroutinetask.interface_.onClick_details
+import com.example.samplecoroutinetask.model.Items
+import com.example.samplecoroutinetask.model.Mainviewmodel
 import kotlinx.android.synthetic.main.fragment_list.*
 
 class ListFragment : Fragment(), onClick_details {
     lateinit var viewModel: Mainviewmodel
     private val listAdapter = listAdapter(arrayListOf())
     private var mList: List<Items> = ArrayList()
-
-//    lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,8 +31,6 @@ class ListFragment : Fragment(), onClick_details {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        recyclerView = view.findViewById(R.id.rv_main)
 
         viewModel = ViewModelProviders.of(this).get(Mainviewmodel::class.java)
         viewModel.refresh()

@@ -1,16 +1,14 @@
 package com.example.samplecoroutinetask.adapter
 
-import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.example.samplecoroutinetask.Interface.onClick_details
-import com.example.samplecoroutinetask.Model.Items
 import com.example.samplecoroutinetask.R
 import com.example.samplecoroutinetask.adapter.listAdapter.ViewHolder
+import com.example.samplecoroutinetask.interface_.onClick_details
+import com.example.samplecoroutinetask.model.Items
 import kotlinx.android.synthetic.main.itemcustom.view.*
 
 class listAdapter(var items: ArrayList<Items>) : RecyclerView.Adapter<ViewHolder>() {

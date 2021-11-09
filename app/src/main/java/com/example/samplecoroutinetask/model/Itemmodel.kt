@@ -1,4 +1,4 @@
-package com.example.samplecoroutinetask.Model
+package com.example.samplecoroutinetask.model
 
 import com.google.gson.annotations.SerializedName
 

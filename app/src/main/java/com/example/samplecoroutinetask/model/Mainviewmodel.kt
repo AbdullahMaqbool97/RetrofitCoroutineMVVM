@@ -1,9 +1,9 @@
-package com.example.samplecoroutinetask.Model
+package com.example.samplecoroutinetask.model
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.samplecoroutinetask.Service.retrofitService
+import com.example.samplecoroutinetask.service.retrofitService
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main

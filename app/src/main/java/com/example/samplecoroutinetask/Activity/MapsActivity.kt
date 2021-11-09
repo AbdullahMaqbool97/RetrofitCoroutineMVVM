@@ -22,6 +22,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.android.synthetic.main.activity_maps.*
+
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -32,9 +34,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     internal var mCurrLocationMarker: Marker? = null
     private var mFusedLocationClient: FusedLocationProviderClient? = null
 
+    var locations: ArrayList<LatLng> = ArrayList()
+
+    companion object {
+        const val MY_PERMISSIONS_REQUEST_LOCATION = 99
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
+
+        toolbar_back.setOnClickListener {
+            finish()
+        }
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -79,9 +91,30 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mGoogleMap = googleMap
         mGoogleMap.mapType = GoogleMap.MAP_TYPE_NORMAL
 
+        locations.add(LatLng(24.915290, 67.122737))
+        locations.add(LatLng(24.929613, 67.115094))
+        locations.add(LatLng(24.931051, 67.118238))
+        locations.add(LatLng(24.932578, 67.121317))
+        locations.add(LatLng(24.925618, 67.107488))
+        locations.add(LatLng(24.922818, 67.116465))
+        locations.add(LatLng(24.908199, 67.119307))
+        locations.add(LatLng(24.901043, 67.115936))
+        locations.add(LatLng(24.867695, 67.082879))
+        locations.add(LatLng(24.906192, 67.138400))
+        locations.add(LatLng(24.912288, 67.104409))
+        locations.add(LatLng(24.901279, 67.112021))
+        locations.add(LatLng(24.886838, 67.125272))
+        locations.add(LatLng(24.892073, 67.153447))
+        locations.add(LatLng(24.895401, 67.153557))
+
+        for (i in 0 until locations.size) {
+            Log.d("arraylist", "knowlocation" + locations[i].latitude)
+            getFakeMarkers(LatLng(locations[i].latitude, locations[i].longitude), i + 1)
+        }
+
         mLocationRequest = LocationRequest()
-        mLocationRequest.interval = 15000 // 15 sec interval
-        mLocationRequest.fastestInterval = 15000
+//        mLocationRequest.interval = 15000 // 15 sec interval
+//        mLocationRequest.fastestInterval = 15000
         mLocationRequest.priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -187,7 +220,24 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    companion object {
-        const val MY_PERMISSIONS_REQUEST_LOCATION = 99
+    fun getFakeMarkers(latLng: LatLng, num: Int) {
+        val markerOptions = MarkerOptions()
+        markerOptions.position(latLng)
+        markerOptions.title("Location $num")
+        mGoogleMap.addMarker(markerOptions)
+
+        mGoogleMap.setOnMarkerClickListener {
+            AlertDialog.Builder(this@MapsActivity)
+                .setTitle(it.title)
+                .setMessage(
+                    "${it.title} \n${it.position.latitude} \n${it.position.longitude}"
+                        .trimIndent()
+                )
+                .setPositiveButton("Ok") { dialog, which ->
+                    dialog.cancel()
+                }
+                .show()
+            false
+        }
     }
 }

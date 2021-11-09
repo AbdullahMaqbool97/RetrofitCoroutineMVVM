@@ -1,6 +1,6 @@
-package com.example.samplecoroutinetask.Service
+package com.example.samplecoroutinetask.service
 
-import com.example.samplecoroutinetask.Interface.Itemsapi
+import com.example.samplecoroutinetask.interface_.Itemsapi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

@@ -25,7 +25,7 @@
             android:exported="true"
             android:theme="@style/Theme.SampleCoroutineTask.NoActionBar" />
         <activity
-            android:name=".Fragments.MainActivityFragment"
+            android:name=".fragments.MainActivityFragment"
             android:exported="true"
             android:theme="@style/Theme.SampleCoroutineTask.NoActionBar" />
         <activity

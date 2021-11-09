@@ -1,6 +1,6 @@
-package com.example.samplecoroutinetask.Interface
+package com.example.samplecoroutinetask.interface_
 
-import com.example.samplecoroutinetask.Model.itemModel
+import com.example.samplecoroutinetask.model.itemModel
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

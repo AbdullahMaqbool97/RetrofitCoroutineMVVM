@@ -1,4 +1,4 @@
-package com.example.samplecoroutinetask.Fragments
+package com.example.samplecoroutinetask.fragments
 
 import android.content.Intent
 import android.os.Bundle

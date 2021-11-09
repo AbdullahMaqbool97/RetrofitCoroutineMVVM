@@ -1,10 +1,10 @@
-package com.example.samplecoroutinetask.Fragments
+package com.example.samplecoroutinetask.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.samplecoroutinetask.R
 import kotlinx.android.synthetic.main.fragment_details.*
 
