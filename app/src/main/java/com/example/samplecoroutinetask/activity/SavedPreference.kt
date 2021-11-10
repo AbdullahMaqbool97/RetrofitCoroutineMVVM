@@ -1,4 +1,4 @@
-package com.example.samplecoroutinetask.Activity
+package com.example.samplecoroutinetask.activity
 
 import android.content.Context
 import android.content.SharedPreferences

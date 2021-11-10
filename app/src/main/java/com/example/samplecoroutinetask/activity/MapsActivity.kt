@@ -1,4 +1,4 @@
-package com.example.samplecoroutinetask.Activity
+package com.example.samplecoroutinetask.activity
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -24,9 +24,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_maps.*
 
-
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
-
     lateinit var mGoogleMap: GoogleMap
     var mapFrag: SupportMapFragment? = null
     lateinit var mLocationRequest: LocationRequest

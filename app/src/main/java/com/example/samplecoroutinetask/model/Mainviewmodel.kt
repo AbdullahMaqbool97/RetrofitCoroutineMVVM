@@ -3,13 +3,13 @@ package com.example.samplecoroutinetask.model
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.samplecoroutinetask.service.retrofitService
+import com.example.samplecoroutinetask.service.RetrofitService
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 
 class Mainviewmodel: ViewModel() {
-    val retrofitService = retrofitService().getItemService()
+    val retrofitService = RetrofitService().getItemService()
     var job: Job? = null
     val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
         onError("Exception handled: ${throwable.localizedMessage}")

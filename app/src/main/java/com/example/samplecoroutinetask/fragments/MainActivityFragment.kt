@@ -6,9 +6,9 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import com.example.samplecoroutinetask.Activity.AboutusActivity
-import com.example.samplecoroutinetask.Activity.LoginActivity
-import com.example.samplecoroutinetask.Activity.MapsActivity
+import com.example.samplecoroutinetask.activity.AboutusActivity
+import com.example.samplecoroutinetask.activity.LoginActivity
+import com.example.samplecoroutinetask.activity.MapsActivity
 import com.example.samplecoroutinetask.R
 import com.facebook.AccessToken
 import com.facebook.GraphRequest

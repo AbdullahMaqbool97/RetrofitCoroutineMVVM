@@ -4,7 +4,7 @@ import com.example.samplecoroutinetask.interface_.Itemsapi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class retrofitService {
+class RetrofitService {
     private val BASE_URL = "https://api.github.com/search/"
 
     fun getItemService(): Itemsapi {

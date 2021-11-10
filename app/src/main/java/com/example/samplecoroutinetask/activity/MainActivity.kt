@@ -1,4 +1,4 @@
-package com.example.samplecoroutinetask.Activity
+package com.example.samplecoroutinetask.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.samplecoroutinetask.R
-import com.example.samplecoroutinetask.adapter.listAdapter
+import com.example.samplecoroutinetask.adapter.ListAdapter
 import com.example.samplecoroutinetask.interface_.onClick_details
 import com.example.samplecoroutinetask.model.Items
 import com.example.samplecoroutinetask.model.Mainviewmodel
@@ -23,13 +23,11 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_drawer_menu.*
 import kotlinx.android.synthetic.main.layout_main.*
-import org.json.JSONObject
-import java.lang.StringBuilder
 
 
 class MainActivity : AppCompatActivity(), onClick_details {
     lateinit var viewModel: Mainviewmodel
-    private val listAdapter = listAdapter(arrayListOf())
+    private val listAdapter = ListAdapter(arrayListOf())
     private var mList: List<Items> = ArrayList()
 
     lateinit var navController: NavController

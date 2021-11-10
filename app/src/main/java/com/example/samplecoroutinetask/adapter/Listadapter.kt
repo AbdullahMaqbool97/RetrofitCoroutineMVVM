@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.samplecoroutinetask.R
-import com.example.samplecoroutinetask.adapter.listAdapter.ViewHolder
+import com.example.samplecoroutinetask.adapter.ListAdapter.ViewHolder
 import com.example.samplecoroutinetask.interface_.onClick_details
 import com.example.samplecoroutinetask.model.Items
 import kotlinx.android.synthetic.main.itemcustom.view.*
 
-class listAdapter(var items: ArrayList<Items>) : RecyclerView.Adapter<ViewHolder>() {
+class ListAdapter(var items: ArrayList<Items>) : RecyclerView.Adapter<ViewHolder>() {
 
     private var onitemclick: onClick_details? = null
 
