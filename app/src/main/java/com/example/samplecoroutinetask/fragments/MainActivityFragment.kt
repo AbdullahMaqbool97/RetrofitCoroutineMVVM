@@ -5,11 +5,12 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import com.example.samplecoroutinetask.R
 import com.example.samplecoroutinetask.activity.AboutusActivity
 import com.example.samplecoroutinetask.activity.LoginActivity
 import com.example.samplecoroutinetask.activity.MapsActivity
-import com.example.samplecoroutinetask.R
 import com.facebook.AccessToken
 import com.facebook.GraphRequest
 import com.facebook.HttpMethod
@@ -40,6 +41,25 @@ class MainActivityFragment : AppCompatActivity() {
             .requestEmail()
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        buy_layout.isSelected = true
+        buy_txt.setTextColor(ContextCompat.getColor(applicationContext, R.color.text_color))
+
+        rent_layout.setOnClickListener {
+            rent_layout.isSelected = true
+            buy_layout.isSelected = false
+
+            buy_txt.setTextColor(ContextCompat.getColor(applicationContext, R.color.black))
+            rent_txt.setTextColor(ContextCompat.getColor(applicationContext, R.color.text_color))
+        }
+
+        buy_layout.setOnClickListener {
+            rent_layout.isSelected = false
+            buy_layout.isSelected = true
+
+            buy_txt.setTextColor(ContextCompat.getColor(applicationContext, R.color.text_color))
+            rent_txt.setTextColor(ContextCompat.getColor(applicationContext, R.color.black))
+        }
 
         val actionBarDrawerToggle =
             ActionBarDrawerToggle(this, drawer_layout, R.string.open, R.string.close)

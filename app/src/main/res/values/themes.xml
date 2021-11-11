@@ -17,5 +17,6 @@
     <style name="Theme.SampleCoroutineTask.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor" tools:targetApi="l">#3db379</item>
     </style>
 </resources>
